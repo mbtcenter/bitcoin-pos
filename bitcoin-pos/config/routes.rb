@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'customers/index'
+
+  get 'home_pages/index'
+  root to: "home_pages#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

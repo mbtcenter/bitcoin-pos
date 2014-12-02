@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-
+gem 'rqrcode', '~> 0.4.2'
+gem 'rqrcode_png'
+gem 'dragonfly', '~> 1.0.7'
+gem 'rqrcode-rails3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
