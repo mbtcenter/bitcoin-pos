@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'blockchain'
 gem 'rqrcode', '~> 0.4.2'
 gem 'rqrcode_png'
 gem 'dragonfly', '~> 1.0.7'

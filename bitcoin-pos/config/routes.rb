@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'success/show'
+
   get 'customers/index'
 
   get 'home_pages/index'
