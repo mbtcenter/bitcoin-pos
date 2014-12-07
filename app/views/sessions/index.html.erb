@@ -1,0 +1,12 @@
+<h1>Sign in</h1>
+<%= form_tag sessions_index_path, method: :post do %>
+	<%= label_tag('account') %>
+	<%= text_field_tag :account, params[:account] %>
+    <br />
+    <br />
+	<%= label_tag('password') %>
+	<%= text_field_tag :password, params[:password] %>
+    <br />
+    <br />
+	<%= submit_tag "sign in" %>
+<% end %>
