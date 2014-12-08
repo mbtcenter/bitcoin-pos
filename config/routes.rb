@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'signup/index'
+
   get 'calculator/index'
 
   get 'qrcode/index'
