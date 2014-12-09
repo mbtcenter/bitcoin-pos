@@ -32,10 +32,7 @@ default: &default
   #database: db/production.sqlite3
 
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: blog_development
-  pool: 5
+  adapter: sqlite3
 
 production:
   adapter: postgresql
