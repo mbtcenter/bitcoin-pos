@@ -1,4 +1,29 @@
-<h1>Calculator#index</h1>
-<p>Find me in app/views/calculator/index.html.erb</p>
-<%= @address %>
-<%= @test%>
+<h1>Your address</h1>
+<p><%= @address %></p>
+<h1>Your balance</h1>
+<p><%= @balance.to_s+'BTC'%></p>
+<%= text_field :amount, params[:amount] %>
+<br />
+<br />
+<%= button_tag '1' %>
+<%= button_tag '2' %>
+<%= button_tag '3' %>
+<br />
+<br />
+<%= button_tag '4' %>
+<%= button_tag '5' %>
+<%= button_tag '6' %>
+<br />
+<br />
+<%= button_tag '7' %>
+<%= button_tag '8' %>
+<%= button_tag '9' %>
+<br />
+<br />
+<%= button_tag '0' %>
+<%= button_tag '+' %>
+<%= button_tag '-' %>
+
+<br />
+<br />
+<%= link_to 'Ok', qrcode_index_url(address: @address)%>

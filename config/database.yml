@@ -36,4 +36,5 @@ development:
 
 production:
   adapter: postgresql
-  prepared_statements: false
+  encoding: unicode
+  pool: 5
