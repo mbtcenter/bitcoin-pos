@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load application ENV vars and merge with existing ENV vars. Loaded here so can use values in initializers.
+ENV.update YAML.load_file('config/beepay_conf.yml')[Rails.env] rescue {}
+
+
 module Bitcoin
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
