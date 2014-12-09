@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
-  get 'success/show'
+  get 'signup/index'
 
-  get 'customers/index'
+  get 'calculator/index'
 
-  get 'home_pages/index'
-  root to: "home_pages#index"
+  get 'qrcode/index'
+
+  get 'qrcode/show'
+
+  get 'address/show'
+
+  get 'address/index'
+
+  post 'sessions/index' , :to => 'sessions#index'
+
+  get 'sessions/show'
+
+  root to: 'sessions#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
