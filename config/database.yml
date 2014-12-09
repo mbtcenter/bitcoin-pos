@@ -33,8 +33,13 @@ default: &default
 
 development:
   adapter: sqlite3
+  database: db/development.sqlite3
+
+#production:
+ # adapter: postgresql
+ # encoding: unicode
+ # pool: 5
 
 production:
   adapter: postgresql
-  encoding: unicode
-  pool: 5
+  prepared_statements: false
