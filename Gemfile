@@ -45,4 +45,13 @@ gem 'spring',        group: :development
 
 gem 'rails_12factor', group: :production
 
-gem 'pg'
+group :development, :test do
+  gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
+end
+
+group :production do
+  gem 'thin'
+end
