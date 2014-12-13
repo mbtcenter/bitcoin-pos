@@ -2,8 +2,8 @@ class QrcodeController < ApplicationController
   
   def index
   	address=params[:address]
-  	amount=params[:amount]
-	url='bitcoin:'+ address +'?amount=0.001'
+  	amount=params[:display]
+	url='bitcoin:'+ address +'?amount=' + amount
 	@qr = RQRCode::QRCode.new(url, :size => 4, :level => 'l'.to_sym)  
   end
   def show
