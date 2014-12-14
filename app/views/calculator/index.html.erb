@@ -1,33 +1,160 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 
+	$(document).ready(function(){
+
+		var curShow = "";
+		var exp = "";
+		var restartFlag = false;
+		$("#display").val(curShow);
+
+		$(".numBtn").click(function(){
+			if($("#clearBtn").val() == "ac")
+			{
+				$("#clearBtn").val("c");
+				$("#clearBtn").html("C");
+			}
+			if( restartFlag == true)
+			{
+				exp = "";
+				curShow = "";
+				restartFlag = false;
+			}
+
+			if($(this).val() == "." && curShow == "")
+			{
+				curShow = "0.";
+			}
+			else if($(this).val() == "." && isLastDot(curShow ))
+			{
+				return;
+			}
+			else
+			{
+				curShow += $(this).val();
+			}
+			$("#display").val(curShow);
+			
+		});
+
+		$(".opBtn").click(function(){
+			exp += curShow;
+			if(exp == "")
+			{
+				alert("Please input a number");
+				return;
+			}
+			op = $(this).val();			
+			restartFlag = false;
+
+			if(isLastOp(exp))
+			{
+				if(op != "=")
+				{
+					exp = exp.substring(0 , exp.length - 1);
+					exp += op;
+				}
+				else
+				{
+					$("#display").val(exp.substring(0 , exp.length - 1));
+				}
+			}
+			else
+			{
+				res = eval(exp);
+				$("#display").val(res);
+				exp = res.toString();
+				if(op != "=")
+				{
+					exp += op;
+				}
+				else
+				{
+					restartFlag = true;
+					$("#clearBtn").val("ac");
+					$("#clearBtn").html("AC");
+				}
+			}
+
+			curShow = "";
+		});
+
+		$("#clearBtn").click(function(){
+			if($(this).val() == "c")
+			{
+				curShow = "";
+				$(this).val("ac");
+				$(this).html("AC");
+			}
+			else
+			{
+				curShow = "";
+				exp = "";
+			}
+			$("#display").val(curShow);
+		});
+	});
+
+	function isLastOp(string)
+	{
+		lastItem = string[string.length - 1];
+		if(lastItem == "+")
+			return true;
+		else if(lastItem == "-")
+			return true;
+		else if(lastItem == "*")
+			return true;
+		else if(lastItem == "/")
+			return true;
+		else
+			return false;
+	}
+
+	function isLastDot(string)
+	{
+		lastItem = string[string.length - 1];
+		if(lastItem == ".")
+			return true;
+		else 
+			return false;
+	}
 </script>
 
 <h1>Your address</h1>
 <p><%= @address %></p>
 <h1>Your balance</h1>
 <p><%= @balance.to_s+'BTC'%></p>
-<%= text_field :amount, params[:amount] %>
-<br />
-<br />
-<%= button_tag '1' %>
-<%= button_tag '2' %>
-<%= button_tag '3' %>
-<br />
-<br />
-<%= button_tag '4' %>
-<%= button_tag '5' %>
-<%= button_tag '6' %>
-<br />
-<br />
-<%= button_tag '7' %>
-<%= button_tag '8' %>
-<%= button_tag '9' %>
-<br />
-<br />
-<%= button_tag '0' %>
-<%= button_tag '+' %>
-<%= button_tag '-' %>
+<% form_tag "/qrcode/index/" , :method => "post" do %>
+<br/>
+<input type = "text" id = "display">
+<br/>
+<br/>
+<button id = "button1" value = "1" class = "numBtn">1</button>
+<button id = "button2" value = "2" class = "numBtn">2</button>
+<button id = "button3" value = "3" class = "numBtn">3</button>
+<button id = "addBtn" value = "+" class = "opBtn">+</button>
+<br/>
+<br/>
+<button id = "button4" value = "4" class = "numBtn">4</button>
+<button id = "button5" value = "5" class = "numBtn">5</button>
+<button id = "button6" value = "6" class = "numBtn">6</button>
+<button id = "subBtn" value = "-" class = "opBtn">-</button>
+<br/>
+<br/>
+<button id = "button7" value = "7" class = "numBtn">7</button>
+<button id = "button8" value = "8" class = "numBtn">8</button>
+<button id = "button9" value = "9" class = "numBtn">9</button>
+<button id = "mulBtn" value = "*" class = "opBtn">*</button>
+<br/>
+<br/>
+<button id = "clearBtn" value = "c">C</button>
+<button id = "button0" value = "0" class = "numBtn">0</button>
+<button id = "buttondot" value = "." class = numBtn >.</button>
+<button id = "divBtn" value = "/" class = "opBtn">/</button>
+<button id = "eqlBtn" value = "=" class = "opBtn">=</button>
 
 <br />
 <br />
 <%= link_to 'Ok', qrcode_index_url(address: @address)%>
+<%= submit_tag "OK" %>
+<% end %>
