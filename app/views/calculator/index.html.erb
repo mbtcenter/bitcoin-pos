@@ -25,7 +25,7 @@
 			{
 				curShow = "0.";
 			}
-			else if($(this).val() == "." && isLastDot(curShow ))
+			else if($(this).val() == "." && isDotExist(curShow ))
 			{
 				return;
 			}
@@ -93,6 +93,18 @@
 			$("#display").val(curShow);
 		});
 	});
+
+	function isDotExist(string)
+	{
+		for(var i = 0; i <= string.length - 1 ; i++)
+		{
+			if(string[i] == ".")
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	function isLastOp(string)
 	{
