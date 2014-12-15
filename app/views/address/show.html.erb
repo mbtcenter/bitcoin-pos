@@ -72,7 +72,7 @@ function equal(e)
 			{
 				c[5] = c[5]*10+x;
 				la = la + 1;
-				form1.a.value = c[0]+c[5]/(Math.pow(10,la));
+				form1.a.value = c[0]+c[5]*(Math.pow(10,18))/((Math.pow(10,la))*(Math.pow(10,18)));
 			}
 			else if(c[1]=='?' && c[0]!='?' && c[3]!='.')
 			{
@@ -242,5 +242,6 @@ function equal(e)
 <br />
 
 </form>
+
 </body>
 </html><br />
