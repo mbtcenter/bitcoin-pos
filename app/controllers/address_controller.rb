@@ -1,3 +1,5 @@
+#require "blockchain"
+
 class AddressController < ApplicationController
   def show
   end
@@ -8,6 +10,7 @@ class AddressController < ApplicationController
   	user = ENV['blockchain_userid']
     pass = ENV['blockchain_userpass']
   	personal_wallet = Blockchain::Wallet.new(user,pass,nil)
-    @addresses = personal_wallet.addresses
+    @addresses = personal_wallet.list_addresses()
+    #@addresses = personal_wallet.addresses
   end
 end

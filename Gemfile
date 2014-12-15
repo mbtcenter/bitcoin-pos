@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'blockchain'
 
-gem 'blockchain-wallet'
+#gem 'blockchain-wallet'
 
 gem 'rqrcode-rails3'
 

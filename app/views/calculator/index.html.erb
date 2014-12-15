@@ -29,6 +29,10 @@
 			{
 				return;
 			}
+			else if($(this).val() == "0" && ( curShow == "0") )
+			{
+				return;
+			}
 			else
 			{
 				curShow += $(this).val();
@@ -138,7 +142,7 @@
 <%= form_tag "/qrcode/index/" , :method => "post" do %>
 <br/>
 <%= text_field_tag "address" , @address , :type => :hidden %>
-<%= text_field_tag "display" , "" %>
+<%= text_field_tag "display" , "" , :readonly => true%>
 <!--input type = "text" id = "display" value = ""-->
 <%= submit_tag "OK" %>
 <% end %>
