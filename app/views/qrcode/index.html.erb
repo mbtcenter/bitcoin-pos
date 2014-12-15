@@ -21,7 +21,6 @@
  td.black { background-color: #000; }
  td.white { background-color: #fff; }
 </style>
-<%= flash[:notice] = @address %>
 <table>
  <% @qr.modules.each_index do |x| %>
    <tr>
@@ -35,3 +34,30 @@
    </tr>
  <% end %>
 </table>
+<html>
+<SCRIPT language="javascript"> 
+var spantime = 10;
+var endflag = false;
+function cal()
+{
+    if (spantime == 0)
+    { 
+        window.location.href= '/message/index';
+    }
+    else
+    {
+        spantime --;
+        str = spantime + "s";
+        document.getElementById("pad").innerHTML = str;
+    }
+}
+window.onload = function()
+{
+    setInterval(cal, 1000);
+}
+</SCRIPT>  
+</head>
+<h1>
+left:<span id="pad"></span>
+</h1>
+</html>

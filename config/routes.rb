@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'message/index'
+
   get 'signup/index'
 
   get 'calculator/index'
