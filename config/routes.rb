@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'calculator/index'
 
-  get 'qrcode/index'
+  post 'qrcode/index'
 
   get 'qrcode/show'
 
