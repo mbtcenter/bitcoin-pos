@@ -34,7 +34,6 @@
 				curShow += $(this).val();
 			}
 			$("#display").val(curShow);
-			
 		});
 
 		$(".opBtn").click(function(){
@@ -126,9 +125,9 @@
 <p><%= @balance.to_s+'BTC'%></p>
 <%= form_tag "/qrcode/index/" , :method => "post" do %>
 <br/>
-<!--input type = "text" id = "address" value = {{@address}} style = "display:none"-->
-<% text_field_tag "address" , @address %>
-<input type = "text" id = "display">
+<%= text_field_tag "address" , @address , :type => :hidden %>
+<%= text_field_tag "display" , "" %>
+<!--input type = "text" id = "display" value = ""-->
 <%= submit_tag "OK" %>
 <% end %>
 <br/>
