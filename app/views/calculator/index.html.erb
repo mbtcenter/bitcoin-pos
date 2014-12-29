@@ -2,7 +2,7 @@
 <script language = "javascript">
 
 	$(document).ready(function(){
-
+  
 		var curShow = "";
 		var exp = "";
 		var restartFlag = false;
@@ -98,6 +98,13 @@
 		});
 	});
 
+	$("#submit").click(function(){
+		if($("#display").val() == "" )
+		{
+			$("#display").val("0");
+		}
+	});
+
 	function isDotExist(string)
 	{
 		for(var i = 0; i <= string.length - 1 ; i++)
@@ -143,8 +150,8 @@
 <br/>
 <%= text_field_tag "address" , @address , :type => :hidden %>
 <%= text_field_tag "display" , "" , :readonly => true%>
-<!--input type = "text" id = "display" value = ""-->
-<%= submit_tag "OK" %>
+<%= select_tag "currency", options_for_select(@ticker.keys,"AUD")%>
+<%= submit_tag "OK" , :id => :submit %>
 <% end %>
 <br/>
 <br/>
@@ -174,3 +181,5 @@
 
 <br />
 <br />
+
+

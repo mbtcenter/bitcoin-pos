@@ -1,6 +1,7 @@
 <h1>Please Scan The Qrcode</h1>
-<br />
-<br />
+<h1>Money:<%= @amount%><%= @currency %></h1>
+<h1>Bitcoin:<%= @bitcoin%> BTC</h1>
+<h1>Rate:<%= @rate%></h1>
 <style type="text/css">
  table {
    border-width: 0;
@@ -34,30 +35,56 @@
    </tr>
  <% end %>
 </table>
-<html>
-<SCRIPT language="javascript"> 
-var spantime = 10;
-var endflag = false;
-function cal()
-{
-    if (spantime == 0)
-    { 
-        window.location.href= '/message/index';
+
+<script>
+$(document).ready(function() {
+  var money = $("#money").val();
+  var address = $("#address").val();
+  var getData = {"money" : money , "address" : address};
+  var url = "/message/index.json";
+  var time = 10;
+  var getTransInterval;
+  var countDownInterval;
+
+function GetTransactionRes(){
+  $.get(url, getData , function(data) {
+    if(data["status"] == "success"){
+      endInterval();
+      location.href = "/message/success";
     }
-    else
-    {
-        spantime --;
-        str = spantime + "s";
-        document.getElementById("pad").innerHTML = str;
+  });
+
+    if(time <= 0){
+      endInterval();
+      location.href = "/message/error";
     }
-}
-window.onload = function()
-{
-    setInterval(cal, 1000);
-}
-</SCRIPT>  
-</head>
+  }
+
+  function countDown(){
+    $("#pad").html(time);
+    time -= 1;
+  }
+
+  function endInterval(){
+    clearInterval(getTransInterval);
+    clearInterval(countDownInterval);
+  }
+
+  getTransInterval = setInterval(GetTransactionRes , 2000);
+  countDownInterval = setInterval(countDown , 1000);
+  
+  });
+
+
+</script>
+
+
 <h1>
 left:<span id="pad"></span>
+<%= text_field_tag :money , @bitcoin , :type => :hidden  %>
+<%= text_field_tag :address , @address , :type => :hidden %>
+<!--input type="hidden" id="tx1" value= {{@}}>
+<input type="hidden" id="tx2" value= '1KeHqnJbKQvTTjyTyakix1RJ9YGFphMwe6'--> 
 </h1>
-</html>
+
+

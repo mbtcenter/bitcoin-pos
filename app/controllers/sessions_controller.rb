@@ -6,5 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def show
+  	@account = params[:account]
+  	@password = params[:password]
   end
 end

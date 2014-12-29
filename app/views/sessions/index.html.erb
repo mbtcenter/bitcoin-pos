@@ -1,5 +1,13 @@
 <h1>Sign In</h1>
-<%= form_tag sessions_index_path, method: :post do %>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %>
+  	<br />
+    <br />
+  </div>
+<% end %>
+
+<%= form_tag address_index_path, method: :post do %>
 	<%= label_tag('Account') %>
 	<%= text_field_tag :account, params[:account] %>
     <br />
